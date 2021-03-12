@@ -45,7 +45,7 @@ class Home extends Component{
     handleSubmit = e => {
         e.preventDefault();
         console.log(this.state)
-        axios.post("http://144.217.88.168:3030/api/user", this.state)
+        axios.post("http://localhost:3001/usuarios", this.state)
         .then(response=>{
             console.log(response);
             this.setState({paises: response.data})
@@ -76,7 +76,7 @@ class Home extends Component{
         <div className="content">
             <h3>Registro de usuarios</h3>
             <div className="content-form">
-                <form action="" onSubmit={this.handleSubmit}>
+                <form action="" >
                     <p >
                         <label>Tipo de documento:</label>
                         <select name="tipodoc" onChange={this.handleChange}>
@@ -88,15 +88,15 @@ class Home extends Component{
                     </p>
                     <p>
                         <label>Identificación</label>
-                        <input type="number" name="identificacion" placeholder="Identificación" value={form.identificacion} onChange={this.handleChange} />
+                        <input type="number" name="identificacion" placeholder="Identificación" value={form.identificacion} onChange={this.handleChange} required />
                     </p>
                     <p>
                         <label>Nombre(s):</label>
-                        <input type="text" name="nombres" placeholder="Nombre(s)" value={form.nombres} onChange={this.handleChange}/>
+                        <input type="text" name="nombres" placeholder="Nombre(s)" value={form.nombres} onChange={this.handleChange} required/>
                     </p>
                     <p>
                         <label>Apellidos:</label>
-                        <input type="text" name="apellidos" placeholder="Apellidos" value={form.apellidos} onChange={this.handleChange}/>
+                        <input type="text" name="apellidos" placeholder="Apellidos" value={form.apellidos} onChange={this.handleChange} required/>
                     </p>
                     <p >
                         <label>Nacionalidad:</label>
@@ -110,18 +110,18 @@ class Home extends Component{
                     </p>
                     <p>
                         <label>Celular</label>
-                        <input type="number" name="celular" placeholder="Celular" value={form.celular} onChange={this.handleChange}/>
+                        <input type="number" name="celular" placeholder="Celular" value={form.celular} onChange={this.handleChange} required/>
                     </p>
                     <p>
                         <label>Email</label>
-                        <input type="email" name="email" placeholder="Email" value={form.email} onChange={this.handleChange}/>
+                        <input type="email" name="email" placeholder="Email" value={form.email} onChange={this.handleChange} required/>
                     </p>
                     <p>
                         <label>Administrador</label>
-                        <input type="text" name="administrador" placeholder="Administrador" value={form.administrador} onChange={this.handleChange} />
+                        <input type="text" name="administrador" placeholder="Administrador" value={form.administrador} onChange={this.handleChange} required />
                     </p>
                     <p className="block">
-                        <button  type="submit">+Agregar</button>
+                        <button  type="submit" onSubmit={this.handleSubmit}>+Agregar</button>
                     </p>
                 </form>
             </div>
