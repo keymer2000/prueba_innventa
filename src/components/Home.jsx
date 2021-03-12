@@ -45,7 +45,7 @@ class Home extends Component{
     handleSubmit = e => {
         e.preventDefault();
         console.log(this.state)
-        axios.post("http://localhost:3001/usuarios", this.state)
+        axios.post("https://fuente-de-datos-geek-virtual-git-master-keymer2000.vercel.app/", this.state)
         .then(response=>{
             console.log(response);
             this.setState({paises: response.data})
@@ -76,7 +76,7 @@ class Home extends Component{
         <div className="content">
             <h3>Registro de usuarios</h3>
             <div className="content-form">
-                <form action="" >
+                <form action="" onSubmit={this.handleSubmit}>
                     <p >
                         <label>Tipo de documento:</label>
                         <select name="tipodoc" onChange={this.handleChange}>
@@ -121,7 +121,7 @@ class Home extends Component{
                         <input type="text" name="administrador" placeholder="Administrador" value={form.administrador} onChange={this.handleChange} required />
                     </p>
                     <p className="block">
-                        <button  type="submit" onSubmit={this.handleSubmit}>+Agregar</button>
+                        <button  type="submit">+Agregar</button>
                     </p>
                 </form>
             </div>
