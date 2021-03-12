@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './home.css'
+import axios from 'axios'
 
 
 
-export default function Home() {
+class Home extends Component{
+
+    state={
+        paises:[]
+    }
+
+    componentDidMount(){
+        axios.get("https://restcountries.eu/rest/v2/all")
+        .then(response=>{
+            console.log(response);
+            this.setState({paises: response.data})
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    }
+    render(){
     return (
         <div className="content">
             <h3>Registro de usuarios</h3>
@@ -20,7 +37,7 @@ export default function Home() {
                     </p>
                     <p>
                         <label>Identificación</label>
-                        <input type="number" name="identificacion" placeholder="Identificación" />
+                        <input type="number" name="identificacion" placeholder="Identificación"  />
                     </p>
                     <p>
                         <label>Nombre(s):</label>
@@ -32,11 +49,11 @@ export default function Home() {
                     </p>
                     <p >
                         <label>Nacionalidad:</label>
-                        <select >
-                            <option>--Seleccione--</option>
-                            <option>CC</option>
-                            <option>CE</option>
-                            <option>PP</option>
+                        <select name="paises" >
+                            {this.state.paises.map(elemento=>(
+                                <option key={elemento.numericCode} value={elemento.numericCode}>{elemento.name}</option>
+                            )
+                            )}
                         </select>
                     </p>
                     <p>
@@ -55,5 +72,7 @@ export default function Home() {
 
         </div>
 
-    )
+    )}
 }
+
+export default Home
